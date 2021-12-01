@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pruebas en <LoginScreen/> debe de renderizar el componente 1`] = `
+<div>
+  <h1>
+    login screen
+  </h1>
+  <button
+    className="btn btn-primary"
+    onClick={[Function]}
+  >
+    Login
+  </button>
+</div>
+`;
