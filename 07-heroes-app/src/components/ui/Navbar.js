@@ -11,7 +11,6 @@ export const Navbar = () => {
     
     const handleLogout = () =>{
         dispatch({ type: types.logout });
-        console.log(user);
         navigate('/login',{replace:true});
     }
 
