@@ -1,6 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
+//import batman from '../../assets/dc-batman.jpg'; importar imagen estatica
+const heroImages = require.context('../../assets');
 export const HeroCard = ({
     id,
     superhero,
@@ -9,7 +11,7 @@ export const HeroCard = ({
     first_appearance,
     characters
 }) => {
-    const imgPath = `/assets/${id}.jpg`;
+    //const imgPath = `/assets/${id}.jpg`;
     return (
         <div className="col animate__animated animate__fadeIn">
             <div className="card">
@@ -18,7 +20,10 @@ export const HeroCard = ({
                         <img
                             className="card-img"
                             alt={superhero} 
-                            src={imgPath}>
+                            //src={imgPath}
+                            //src={batman} imagen estatica 
+                            src = {heroImages(`./${id}.jpg`).default}
+                            >
                         </img>
                     </div>
                     <div className="col-md-8">
