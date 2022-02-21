@@ -3,7 +3,7 @@ import { collection, addDoc,updateDoc,doc,deleteDoc } from "firebase/firestore";
 import { types } from "../types/types";
 import { loadNotes } from "../helpers/loadNotes";
 import Swal from "sweetalert2";
-import { fileUpload } from "../hooks/fileUpload";
+import { fileUpload } from "../helpers/fileUpload";
 
 export const startNewNote = () => {
     return async ( dispatch,getState) =>{
@@ -85,10 +85,15 @@ export const startUploading =  (file) =>{
             //     Swal.showLoading();
             // }
         });
-        const fileURL = await fileUpload(file);
-        activeNote.url = fileURL;
-        dispatch(startSaveNote(activeNote))
-        Swal.close();
+        try{
+            const fileURL = await fileUpload(file);
+            activeNote.url = fileURL;
+            dispatch(startSaveNote(activeNote))
+            Swal.close();
+        }catch(error){
+            console.log(error);
+        }
+        
     }
 }
 
@@ -96,7 +101,6 @@ export const startDeleting = (idNote) =>{
     return async (dispatch,getState) =>{
         const uid = getState().auth.uid;
         const noteRef = doc(db, `${uid}/journal/notes/${idNote}`);
-        console.log(`${uid}/journal/notes/${idNote}`);
         await deleteDoc(noteRef);
         dispatch(deleteNote(idNote));
     }

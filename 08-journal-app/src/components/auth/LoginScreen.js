@@ -23,6 +23,7 @@ export const LoginScreen = () => {
     }
 
     const handleGoogleLogin = ()=>{
+        console.log('first');
         dispatch(startGoogleLogin());
        
     }

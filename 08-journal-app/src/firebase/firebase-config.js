@@ -6,15 +6,27 @@ import { getAuth, signInWithPopup,GoogleAuthProvider,createUserWithEmailAndPassw
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyApLj4c_8Ry9k1-VhFnFBRVvuXwn0X2JkM",
-    authDomain: "react-app-excreed.firebaseapp.com",
-    projectId: "react-app-excreed",
-    storageBucket: "react-app-excreed.appspot.com",
-    messagingSenderId: "1031496108330",
-    appId: "1:1031496108330:web:f4248e2cd1566c1e9b3653"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain:process.env.REACT_APP_AUTH_DOMAIN,
+    projectId:process.env.REACT_APP_PROJECT_ID,
+    storageBucket:process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID,
   };
+
+  // const firebaseConfigTesting = {
+  //   apiKey: "AIzaSyBt65LrNPNlkmJvevh3kFnu-dE0B7oR3QA",
+  //   authDomain: "listacurso-82f37.firebaseapp.com",
+  //   databaseURL: "https://listacurso-82f37.firebaseio.com",
+  //   projectId: "listacurso-82f37",
+  //   storageBucket: "listacurso-82f37.appspot.com",
+  //   messagingSenderId: "69454959701",
+  //   appId: "1:69454959701:web:54ae04e045e86fd61470dc"
+  // };
+
   
   // Initialize Firebase
+  // const app = initializeApp(process.env.NODE_ENV ==='test'?firebaseConfigTesting:firebaseConfig);
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   const googleAuthProvider = new GoogleAuthProvider();

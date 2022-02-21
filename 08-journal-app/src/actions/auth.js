@@ -8,7 +8,7 @@ export const startLoginEmailPassword = (email, password) => {
     return (dispatch) => {
         dispatch(startLoading());
         const auth = getAuth();
-        signInWithEmailAndPassword(auth, email, password)
+        return signInWithEmailAndPassword(auth, email, password)
             .then(({user}) => {
                 dispatch(
                     login( user.uid, user.displayName )
@@ -16,6 +16,7 @@ export const startLoginEmailPassword = (email, password) => {
                 dispatch(finishLoading());
             })
             .catch((error) => {
+                console.log(error);
                 dispatch(finishLoading());
                 Swal.fire('Error','User not found, wrong email or password','error');
             });
@@ -43,7 +44,9 @@ export const startGoogleLogin = () =>{
             dispatch(
                 login( user.uid, user.displayName )
             )
-        });
+        }).catch((e)=>
+            console.log(e)
+        );
     }
 }
 
